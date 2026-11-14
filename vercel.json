@@ -1,14 +1,37 @@
+
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "frontend/dist",
   "rewrites": [
-    { "source": "/users/(.*)", "destination": "/api" },
-    { "source": "/student/(.*)", "destination": "/api" },
-    { "source": "/attendance/(.*)", "destination": "/api" },
-    { "source": "/menu/(.*)", "destination": "/api" },
-    { "source": "/complaints/(.*)", "destination": "/api" },
-    { "source": "/leaves/(.*)", "destination": "/api" },
-    { "source": "/api/(.*)", "destination": "/api" }
+    {
+      "source": "/users/:path*",
+      "destination": "/api/users/:path*"
+    },
+    {
+      "source": "/student/:path*",
+      "destination": "/api/student/:path*"
+    },
+    {
+      "source": "/attendance/:path*",
+      "destination": "/api/attendance/:path*"
+    },
+    {
+      "source": "/menu/:path*",
+      "destination": "/api/menu/:path*"
+    },
+    {
+      "source": "/complaints/:path*",
+      "destination": "/api/complaints/:path*"
+    },
+    {
+      "source": "/leaves/:path*",
+      "destination": "/api/leaves/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

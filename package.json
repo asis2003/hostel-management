@@ -7,16 +7,15 @@
   "engines": {
     "node": ">=20"
   },
-  "scripts": {
-    "start": "node server/index.js",
-    "server": "nodemon server/index.js",
-    "client": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run build --prefix frontend",
-    "postinstall": "prisma generate",
-    "db:push": "prisma db push",
-    "db:studio": "prisma studio",
-    "vercel-build": "npm install --prefix frontend --include=dev && npx prisma generate && npm run build --prefix frontend"  },
+ 
+"scripts": {
+  "start": "node server/index.js",
+  "server": "nodemon server/index.js",
+  "client": "npm start --prefix frontend",
+  "vercel-build": "npm install --prefix frontend --include=dev && npx prisma generate && npm run build --prefix frontend",
+  "build": "npm run build --prefix frontend",
+  "postinstall": "prisma generate"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
