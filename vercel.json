@@ -29,7 +29,7 @@
       "destination": "/api/leaves/:path*"
     },
     {
-      "source": "/(.*)",
+      "source": "/:path((?!api/).*)",
       "destination": "/index.html"
     }
   ]
