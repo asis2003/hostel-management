@@ -16,8 +16,7 @@
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "vercel-build": "prisma generate && npm run build --prefix frontend"
-  },
+    "vercel-build": "npm install --prefix frontend --include=dev && npx prisma generate && npm run build --prefix frontend"  },
   "author": "",
   "license": "ISC",
   "dependencies": {
