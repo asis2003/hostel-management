@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    { "source": "/users/(.*)", "destination": "/api" },
+    { "source": "/student/(.*)", "destination": "/api" },
+    { "source": "/attendance/(.*)", "destination": "/api" },
+    { "source": "/menu/(.*)", "destination": "/api" },
+    { "source": "/complaints/(.*)", "destination": "/api" },
+    { "source": "/leaves/(.*)", "destination": "/api" },
+    { "source": "/api/(.*)", "destination": "/api" }
+  ]
+}

@@ -1,0 +1,109 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Student {
+  id            String   @id @default(cuid())
+  studentId     String   @unique
+  name          String
+  address       String
+  category      String
+  city          String
+  contact       String
+  fatherContact String
+  image         String
+  roomNo        String
+  blockNo       String
+  roomType      String   @default("2 Sharing")
+  status        String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([name])
+  @@index([roomNo])
+}
+
+model Attendance {
+  id        String   @id @default(cuid())
+  roomNo    String[]
+  date      String
+  data      Json
+  details   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+}
+
+model Menu {
+  id        String   @id @default(cuid())
+  week      String   @unique
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ====================== NEW MODELS ======================
+
+model Complaint {
+  id              String   @id @default(cuid())
+  roomNo          String
+  blockNo         String?
+  category        String   // Electrical | Plumbing | Cleaning | Wi-Fi
+  title           String
+  description     String
+  status          String   @default("Pending") // Pending | In Progress | Resolved | Rejected
+  assignedTo      String?
+  resolutionNote  String?
+  raisedBy        String   // User.id
+  raisedByName    String?
+  feedbackRating  Int?
+  feedbackComment String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([category])
+  @@index([roomNo])
+  @@index([raisedBy])
+}
+
+model Leave {
+  id            String   @id @default(cuid())
+  roomNo        String
+  studentName   String
+  type          String   @default("Leave") // Leave | Outing
+  startDate     String
+  endDate       String
+  reason        String
+  parentName    String
+  parentContact String
+  status        String   @default("Pending") // Pending | Approved | Rejected
+  adminNote     String?
+  passCode      String?
+  raisedBy      String   // User.id
+  approvedBy    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([status])
+  @@index([roomNo])
+  @@index([passCode])
+  @@index([raisedBy])
+}
